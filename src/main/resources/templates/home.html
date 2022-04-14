@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Weather</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" th:href="@{slick/slick.css}">
+<link rel="stylesheet" th:href="@{slick/slick-theme.css}">
+<link rel="stylesheet" th:href="@{style.css}">
+<link rel="stylesheet" th:href="@{responsive.css}">
+</head>
+<body>
+	<div class="main">
+		<div class="inner-123">
+			<div class="left bg-container">
+				<div class="left-cont">
+					<div class="left-side">
+						<h2 class="title">Forecast</h2>
+						<div class="location">
+							<div>
+								<img th:src="@{/img/location.png}">
+								<p th:text="${today.name+', '+today.sys.country}"></p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-contain">
+						<!--<h2 class="title">Search City</h2>-->
+						<form class="form">
+							<input type="text" placeholder="Search location..." class="inputs" name="cityname">
+							<a id="btn-search"><i class="fa fa-search inputs"></i></a>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="right text-container">
+				<div class="block">
+					<div class="right-main menu">
+						<ul class="menu">
+							<li><a href=".">Weather</a></li>
+							<li><a href="/about">About</a></li>
+							<li><a href="#">News</a></li>
+						</ul>
+					</div>
+					<div class="content">
+						<h1>Today</h1>
+						<div class="widget">
+							<div class="today">
+								<div>
+								<h2 class="widget-title" th:text="${today.main.temp} + @{&deg;C}"><span>&deg;</span></h2>
+								<p class="date" th:text="${today.date}"></p>
+								</div>
+								
+								<p class="day" th:each=" w : ${ today.weather }">
+									<img th:src="@{https://openweathermap.org/img/wn/}+${w.icon}+@{@2x.png}">
+									<span th:text="${w.description}"></span>
+								</p>
+							</div>
+							<div class="right">
+								<p class="date">Humidity : <span th:text="${today.main.humidity} + '%'"></span></p>
+							    <p class="date">Wind : <span th:text="${today.wind.speed} + kph "></span></p>
+							    <p class="date">Gustiness : <span th:text="${today.wind.gust} + kph "></span></p>
+								<p class="date">Sunrise : <span th:text="${today.sunrise}"></span></p>
+								<p class="date">Sunset : <span th:text="${today.sunset}"></span></p>
+							</div>
+						</div>
+						<h2 class="secondary-title">Hourly Forecast</h2>
+						<div class="owl">
+							<div class="owl-carousel owl-theme" >
+								<div th:each="daily : ${forecast.list}">
+									<div class="widget-cont">
+										<p class="daily-temp" th:text="${daily.main.temp}+@{&deg;} + ' - ' + ${daily.hour}"></p>
+										<div th:each="wea : ${daily.weather}">
+											<img class="daily-img" th:src="@{https://openweathermap.org/img/wn/}+${wea.icon}+@{@2x.png}">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script th:src="@{js/jquery.js}"></script>
+	<script th:src="@{slick/slick.min.js}"></script>
+	<script th:src="@{js/eventhandler.js}"></script>
+	<script>
+		jQuery(document).ready(function($){
+			$('.owl-carousel').slick({
+				dots: false,
+				infinite: false,
+				speed: 300,
+				slidesToShow: 2,
+				slidesToScroll: 2
+			});
+			
+			//let timestamp = $('.date').text();
+			//let date = new Date(timestamp);
+			//let finaldate = date.getDate();
+			//$('.date').text(finaldate);
+		});
+	</script>
+</body>
+</html>

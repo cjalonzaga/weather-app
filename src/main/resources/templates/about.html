@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Weather</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" th:href="@{slick/slick.css}">
+<link rel="stylesheet" th:href="@{slick/slick-theme.css}">
+<link rel="stylesheet" th:href="@{style.css}">
+<link rel="stylesheet" th:href="@{responsive.css}">
+</head>
+<body class="about">
+	<div class="main">
+		<div class="inner-123">
+			<div class="center">
+				<h1 class="widget-title-inner">About</h1>
+				<p class="widget-content-inner">
+				A not that so good web app.
+				</p>
+				<p class="space"></p>
+				<p class="widget-content-inner">
+				Build with the help of free weather Api subscription from 
+				<a href="https://openweathermap.org/api" target="_blank" class="link">openweathermap.org/api</a>
+				<p class="space"></p>
+				<p class="space"></p>
+					<div>
+						<img th:src="@{/img/spring-logo.png}" width="100">
+					</div>
+					<div>
+						<p class="widget-content-inner">and <a href="https://spring.io/" class="link">Spring Framework</a></p>
+					</div>
+				<p class="space"></p>
+				<a href="." class="button">Return</a>
+			</div>
+		</div>
+	</div>
+	<script th:src="@{js/jquery.js}"></script>
+</body>
+</html>
