@@ -15,7 +15,7 @@ import com.webb.app.util.Json;
 @RestController
 public class WeatherApi {
 	
-	private final String apiKey = "fc383a8b7d325896d7aafba1624d3ed5";
+	private final String apiKey = "";
 	private WeatherApiMain wam;
 	private Forecast foreCast;
 	private double lat;
